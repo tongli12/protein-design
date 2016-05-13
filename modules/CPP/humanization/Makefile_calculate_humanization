@@ -1,0 +1,12 @@
+
+objects = calculate_humanization_main.o Deimmunization.o 
+
+calculate_humanization.out : $(objects)
+	g++ -o calculate_humanization.out $(objects)
+calculate_humanization_main.o : calculate_humanization_main.cpp Deimmunization.h
+	g++ -I/usr/global/boost/1_51_0/include -c calculate_humanization_main.cpp -o calculate_humanization_main.o
+/usr/global/boost/1_51_0/include Deimmunization.o : Deimmunization.cpp Deimmunization.h
+	g++ -c Deimmunization.cpp -o Deimmunization.o
+
+clean :
+	rm -f $(objects)
